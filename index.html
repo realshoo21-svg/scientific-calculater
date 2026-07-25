@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A premium scientific calculator with glassmorphism UI, history, keyboard support, and PWA offline capabilities."
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Nova Scientific Calculator</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="icons/icon-192x192.svg" />
+    <link rel="apple-touch-icon" href="icons/icon-192x192.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-ring"></div>
+      <p>Preparing your calculator</p>
+    </div>
+
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+    <div class="background-glow glow-3"></div>
+
+    <main class="app-shell">
+      <section class="calculator-card">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Premium Scientific</p>
+            <h1>Nova Calculator</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Switch theme">
+              <span>☀️</span>
+            </button>
+            <button class="icon-btn install-btn" id="installButton" aria-label="Install app" title="Install app">
+              <span>⬇️</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="display-panel" aria-label="Calculator display">
+          <div class="display-top">
+            <span class="badge">RAD</span>
+            <button class="ghost-btn" id="copyResult" title="Copy result">Copy</button>
+          </div>
+          <div class="display-screen">
+            <div class="expression" data-expression>0</div>
+            <div class="result" data-result>0</div>
+          </div>
+        </section>
+
+        <section class="controls-row">
+          <button class="pill-btn" data-action="memory" data-value="MC">MC</button>
+          <button class="pill-btn" data-action="memory" data-value="MR">MR</button>
+          <button class="pill-btn" data-action="memory" data-value="M+">M+</button>
+          <button class="pill-btn" data-action="memory" data-value="M-">M-</button>
+          <button class="pill-btn" data-action="memory" data-value="MS">MS</button>
+        </section>
+
+        <section class="keypad" aria-label="Calculator keys">
+          <button class="btn func" data-value="π" title="Pi">π</button>
+          <button class="btn func" data-value="e" title="Euler's number">e</button>
+          <button class="btn func" data-value="sqrt(" title="Square root">√</button>
+          <button class="btn func accent" data-action="clear">C</button>
+
+          <button class="btn func" data-value="sin(" title="Sine">sin</button>
+          <button class="btn func" data-value="cos(" title="Cosine">cos</button>
+          <button class="btn func" data-value="tan(" title="Tangent">tan</button>
+          <button class="btn func" data-action="backspace">⌫</button>
+
+          <button class="btn func" data-value="asin(" title="Arcsine">asin</button>
+          <button class="btn func" data-value="acos(" title="Arccosine">acos</button>
+          <button class="btn func" data-value="atan(" title="Arctangent">atan</button>
+          <button class="btn func" data-value="log(" title="Logarithm">log</button>
+
+          <button class="btn func" data-value="ln(" title="Natural log">ln</button>
+          <button class="btn func" data-value="abs(" title="Absolute value">|x|</button>
+          <button class="btn func" data-value="!" title="Factorial">x!</button>
+          <button class="btn func" data-value="%" title="Modulo">mod</button>
+
+          <button class="btn func" data-value="^" title="Power">xʸ</button>
+          <button class="btn func" data-value="exp(" title="Exponential">exp</button>
+          <button class="btn func" data-value="random()" title="Random number">rand</button>
+          <button class="btn func" data-value="(" title="Open parenthesis">(</button>
+
+          <button class="btn number" data-value="7">7</button>
+          <button class="btn number" data-value="8">8</button>
+          <button class="btn number" data-value="9">9</button>
+          <button class="btn func" data-value="/">÷</button>
+
+          <button class="btn number" data-value="4">4</button>
+          <button class="btn number" data-value="5">5</button>
+          <button class="btn number" data-value="6">6</button>
+          <button class="btn func" data-value="*">×</button>
+
+          <button class="btn number" data-value="1">1</button>
+          <button class="btn number" data-value="2">2</button>
+          <button class="btn number" data-value="3">3</button>
+          <button class="btn func" data-value="-">−</button>
+
+          <button class="btn number" data-value="0">0</button>
+          <button class="btn number" data-value=".">.</button>
+          <button class="btn func" data-value="%">%</button>
+          <button class="btn func" data-value="+">+</button>
+
+          <button class="btn func" data-value=")" title="Close parenthesis">)</button>
+          <button class="btn func" data-value="^2" title="Square">x²</button>
+          <button class="btn func" data-value="^3" title="Cube">x³</button>
+          <button class="btn equals" data-action="equals">=</button>
+        </section>
+      </section>
+
+      <aside class="history-card">
+        <div class="history-header">
+          <h2>History</h2>
+          <button class="ghost-btn" id="clearHistory">Clear</button>
+        </div>
+        <ul class="history-list" id="historyList"></ul>
+      </aside>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
