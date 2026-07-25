@@ -1,12 +1,14 @@
 const CACHE_NAME = 'nova-calc-v1';
+const CACHE_NAME = 'nova-calc-v2';
+
 const APP_SHELL = [
   './',
   './index.html',
   './style.css',
   './script.js',
   './manifest.json',
-  './icons/icon-192x192.svg',
-  './icons/icon-512x512.svg'
+  './icon-192x192.svg',
+  './icon-512x512.svg'
 ];
 
 self.addEventListener('install', (event) => {
